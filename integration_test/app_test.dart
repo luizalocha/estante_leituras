@@ -41,6 +41,22 @@ Future<void> pumpUntilFound(
   throw TestFailure('Não apareceu a tempo: $finder');
 }
 
+Future<void> pumpUntilGone(
+  WidgetTester tester,
+  Finder finder, {
+  Duration timeout = const Duration(seconds: 30),
+}) async {
+  final end = DateTime.now().add(timeout);
+  while (DateTime.now().isBefore(end)) {
+    await tester.pump(const Duration(milliseconds: 250));
+    if (finder.evaluate().isEmpty) {
+      await tester.pump(const Duration(milliseconds: 500));
+      return;
+    }
+  }
+  throw TestFailure('Não sumiu a tempo: $finder');
+}
+
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
@@ -74,6 +90,7 @@ void main() {
     await tester.tap(find.byKey(const Key('add_/works/E2E1W')));
     await pumpUntilFound(tester, find.byIcon(Icons.check_circle));
     await tester.pageBack();
+    await pumpUntilGone(tester, find.byKey(const Key('search_field')));
 
     // 4. Consulta (read): recarrega do servidor
     await pumpUntilFound(tester, find.text('E2E - Livro de teste'));
@@ -87,6 +104,8 @@ void main() {
     await tester.tap(find.byKey(const Key('rating_4')));
     await tester.pump();
     await tester.tap(find.byKey(const Key('save_book')));
+    // Espera a tela de detalhes fechar por completo (fim da animação).
+    await pumpUntilGone(tester, find.byKey(const Key('save_book')));
     await pumpUntilFound(tester, find.text('★ 4'));
 
     // 6. Remoção (delete)
