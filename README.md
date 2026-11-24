@@ -7,7 +7,8 @@ anotações e pode fotografar a capa com a **câmera** (a foto fica só no apare
 Sem internet, a última estante salva aparece com o aviso de dados desatualizados.
 
 Trabalho final de Desenvolvimento Mobile II — Unilavras, 2º semestre de 2026.
-Autoria: **[seu nome completo]** — matrícula **[sua matrícula]**.
+Autoria: **Luiza Cardoso da Locha** — matrícula **0031653** — 4º período.
+Trabalho individual.
 
 ## Funcionalidades x requisitos
 
@@ -26,14 +27,18 @@ Autoria: **[seu nome completo]** — matrícula **[sua matrícula]**.
 
 ## Ambiente
 
-- Flutter estável (versão exata registrada no relatório: `flutter --version`)
-- Android SDK 23+ (emulador ou aparelho)
-- Projeto Firebase com Authentication (e-mail/senha) e Cloud Firestore
+| Item | Versão verificada |
+|---|---|
+| Flutter / Dart | 3.50.1 (stable) / 3.14.0 |
+| Android | emulador Pixel 6, Android 17 (API 37); minSdk 23 |
+| Build | AGP 9.3.1, Gradle 9.5.0, Kotlin 2.4.20, compileSdk 37 |
+| Firebase | projeto `estante-leituras-0031653` (plano Spark): Authentication e-mail/senha + Cloud Firestore (southamerica-east1) |
+| Versão do app | 1.0.0+1 — tag `m2-final` |
 
 ## Como reproduzir a partir de um clone limpo
 
 ```bash
-git clone <URL_DO_REPOSITORIO>
+git clone https://github.com/luizalocha/estante_leituras.git
 cd estante_leituras
 git checkout m2-final          # tag avaliada
 flutter pub get
