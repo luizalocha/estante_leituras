@@ -1,0 +1,36 @@
+name: estante_leituras
+description: "Estante de Leituras — trabalho final de Desenvolvimento Mobile II."
+publish_to: 'none'
+
+# Formato: versão visível + número do build (versionName + versionCode no Android).
+# Aumente o número depois do "+" a cada novo APK/AAB gerado.
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.0
+
+# As dependências são adicionadas pelos comandos `flutter pub add` do guia,
+# para que o pub escolha as versões mais recentes compatíveis com o seu Flutter.
+dependencies:
+  cloud_firestore: ^7.2.0
+  firebase_auth: ^7.1.0
+  firebase_core: ^5.2.0
+  flutter:
+    sdk: flutter
+  http: ^1.6.0
+  image_picker: ^1.2.4
+  material_ui: ^1.11.1
+  path_provider: ^2.1.6
+  permission_handler: ^13.0.2
+  provider: ^6.1.5+1
+  shared_preferences: ^2.5.6
+
+dev_dependencies:
+  flutter_lints: ^6.0.0
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true

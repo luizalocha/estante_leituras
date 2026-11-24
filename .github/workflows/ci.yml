@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  qualidade:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - run: flutter --version
+      - run: flutter pub get
+      - name: Formatação
+        run: dart format --output=none --set-exit-if-changed .
+      - name: Análise estática
+        run: flutter analyze
+      - name: Testes de unidade e widget
+        run: flutter test --reporter expanded

@@ -1,0 +1,57 @@
+rules_version = '2';
+
+// Regras de segurança do Cloud Firestore — Estante de Leituras.
+//
+// Modelo: coleção `books`; cada documento tem `ownerId` = UID do dono.
+// Somente o dono autenticado lê, cria, altera ou remove o próprio livro.
+// Tudo o que não está liberado explicitamente é negado.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(data) {
+      return signedIn() && data.ownerId == request.auth.uid;
+    }
+
+    function validBook(d) {
+      return d.keys().hasOnly(['ownerId', 'title', 'author', 'year', 'coverUrl',
+                               'workKey', 'status', 'rating', 'notes',
+                               'createdAt', 'updatedAt'])
+        && d.title is string && d.title.size() > 0 && d.title.size() <= 200
+        && d.author is string && d.author.size() <= 300
+        && d.status in ['quero_ler', 'lendo', 'lido']
+        && d.rating is int && d.rating >= 0 && d.rating <= 5
+        && d.notes is string && d.notes.size() <= 1000;
+    }
+
+    match /books/{bookId} {
+      // Leitura (get e list): só documentos do próprio usuário.
+      // Uma consulta sem o filtro ownerId == uid é recusada inteira.
+      allow read: if isOwner(resource.data);
+
+      // Criação: o ownerId gravado tem que ser o UID de quem cria.
+      allow create: if isOwner(request.resource.data)
+        && validBook(request.resource.data)
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.updatedAt == request.time;
+
+      // Atualização: só o dono, e só os campos editáveis.
+      allow update: if isOwner(resource.data)
+        && validBook(request.resource.data)
+        && request.resource.data.diff(resource.data).affectedKeys()
+             .hasOnly(['status', 'rating', 'notes', 'updatedAt'])
+        && request.resource.data.updatedAt == request.time;
+
+      // Remoção: só o dono.
+      allow delete: if isOwner(resource.data);
+    }
+
+    // Qualquer outro caminho: negado.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

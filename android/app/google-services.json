@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "107483989914",
+    "project_id": "estante-leituras-0031653",
+    "storage_bucket": "estante-leituras-0031653.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:107483989914:android:784cde6954ded8c9a81c23",
+        "android_client_info": {
+          "package_name": "br.edu.unilavras.estante_leituras"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkBCkwluWDwWRYS4VFcwT-OH_oveDAE_o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

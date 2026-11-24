@@ -1,0 +1,41 @@
+# --- Flutter / Dart ---
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+build/
+coverage/
+*.iml
+.idea/
+.vscode/
+.DS_Store
+.metadata.bak
+
+# --- Android ---
+/android/app/debug
+/android/app/profile
+/android/app/release
+android/local.properties
+android/.gradle/
+android/captures/
+android/.kotlin/
+
+# --- Segredos (NUNCA vão para o Git) ---
+android/key.properties
+*.jks
+*.keystore
+*.p12
+.env
+*.env
+
+# --- Artefatos de release (ficam fora do Git; o hash vai no relatório) ---
+*.apk
+*.aab
+
+# --- Firebase local ---
+.firebase/
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+firestore_rules_test/node_modules/
