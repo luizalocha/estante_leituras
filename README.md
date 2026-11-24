@@ -7,7 +7,7 @@ anotações e pode fotografar a capa com a **câmera** (a foto fica só no apare
 Sem internet, a última estante salva aparece com o aviso de dados desatualizados.
 
 Trabalho final de Desenvolvimento Mobile II — Unilavras, 2º semestre de 2026.
-Autoria: **[seu nome completo]** — matrícula **[sua matrícula]**.
+Autoria: **Luiza Cardoso da Locha** — matrícula **0031653**.
 
 ## Funcionalidades x requisitos
 
